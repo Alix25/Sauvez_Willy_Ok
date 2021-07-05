@@ -11,15 +11,28 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/tfe_od_app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.ObjectDetection">
-        <activity android:name=".MainActivity2"></activity>
+        android:theme="@style/AppTheme.ObjectDetection"
+        android:hardwareAccelerated="true">
+        <meta-data android:name="com.here.sdk.access_key_id" android:value="Xf8hEsPvAUm3kjYPOo74kA"/>
+        <meta-data android:name="com.here.sdk.access_key_secret" android:value="zAwZR623asujKwgDqvu-3lYqMwk1s1jfD1oKs9IyvyHV4j3zzt73LMwMkk1rLCftijV6WVbcJhcRXANFik25Pg"/>
+
+        <activity android:name=".MainActivity2">
+            <intent-filter  >
+
+                <action android:name="android.intent.action.VIEW" />
+
+            </intent-filter>
+        </activity>
         <activity
             android:name=".DetectorActivity"
             android:label="@string/tfe_od_app_name"
