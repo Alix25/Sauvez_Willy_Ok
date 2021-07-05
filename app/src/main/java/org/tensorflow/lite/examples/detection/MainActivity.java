@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             this.imageView.setImageBitmap(cropBitmap);
 
         }
-        initBox();
+        initBox();//init
     }
 
 

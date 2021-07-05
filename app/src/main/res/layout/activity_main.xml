@@ -7,52 +7,61 @@
     tools:context=".MainActivity">
 
 
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:rowCount="5"
+    android:columnCount="7">
+
+
     <Button
         android:id="@+id/cameraButton"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Camera"
-        android:layout_marginStart="200dp"
-        android:layout_marginBottom="126dp"
-        app:layout_constraintBottom_toBottomOf="@+id/detectButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.655"
-        app:layout_constraintStart_toEndOf="@+id/detectButton"
-        app:layout_constraintTop_toTopOf="@+id/detectButton"
-        app:layout_constraintVertical_bias="0.0" />
+        android:layout_row="3"
+        android:layout_column="0"
+        android:layout_marginLeft="130dp"
+
+
+
+    />
+
 
     <Button
         android:id="@+id/detectButton"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="126dp"
         android:text="Detect"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_row="3"
+        android:layout_column="0"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/takePictureButton"
-        android:layout_width="wrap_content"
+        android:layout_width="400dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginBottom="126dp"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:text="Take a picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_row="4"
+        android:layout_column="0"
+
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/openMap"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="150dp"
-        android:layout_marginBottom="0dp"
+     android:layout_marginLeft="250dp"
+        android:layout_row="3"
+        android:layout_column="0"
         android:text="Map"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+
+</GridLayout>
 
 
     <ImageView
@@ -60,11 +69,10 @@
         android:layout_width="416dp"
         android:layout_height="416dp"
         android:scaleType="fitStart"
-        app:layout_constraintBottom_toTopOf="@+id/detectButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/kite" />
+        tools:srcCompat="@drawable/cam" />
 
 
     <org.tensorflow.lite.examples.detection.customview.OverlayView
@@ -88,10 +96,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/tfe_color_accent">
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />// android:src="@drawable/tfl2_logo.png" />
+
 
             <TextView
                 android:id="@+id/frame"
@@ -104,7 +109,16 @@
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/orca"
+                android:layout_marginLeft="180dp"/>
+
         </androidx.appcompat.widget.Toolbar>
+
+
     </FrameLayout>
 
 
