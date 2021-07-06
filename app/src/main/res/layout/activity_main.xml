@@ -16,7 +16,7 @@
 
     <Button
         android:id="@+id/cameraButton"
-        android:layout_width="150dp"
+        android:layout_width="158dp"
         android:layout_height="wrap_content"
         android:text="Camera"
         android:layout_row="3"
@@ -30,7 +30,7 @@
 
     <Button
         android:id="@+id/detectButton"
-        android:layout_width="150dp"
+        android:layout_width="138dp"
         android:layout_height="wrap_content"
         android:text="Detect"
         android:layout_row="3"
@@ -39,7 +39,7 @@
 
     <Button
         android:id="@+id/takePictureButton"
-        android:layout_width="400dp"
+        android:layout_width="410dp"
         android:layout_height="wrap_content"
         style="@style/Widget.AppCompat.Button.Colored"
         android:text="Take a picture"
@@ -50,9 +50,9 @@
 
     <Button
         android:id="@+id/openMap"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
-     android:layout_marginLeft="250dp"
+     android:layout_marginLeft="280dp"
         android:layout_row="3"
         android:layout_column="0"
         android:text="Map"
@@ -64,14 +64,15 @@
         android:id="@+id/validGeolocalisation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="160dp"
+
+        android:layout_marginLeft="155dp"
         android:layout_row="2"
         android:layout_column="0"
         android:layout_marginBottom="100dp"
-        android:text="Add picture"
+        android:text="Add on map"
 
 
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        style="@style/Widget.AppCompat.Button.Colored"
 
 
 
