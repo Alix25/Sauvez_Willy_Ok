@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         detectButton = findViewById(R.id.detectButton); //Detect plastic on the image
         takePictureButton = findViewById(R.id.takePictureButton); //Take a picture
         openMapButton = findViewById(R.id.openMap);
-        validGeolocalisationButton = findViewById(R.id.validGeolocalisation);
+
         //----------------------------------------------------------
 
         imageView = findViewById(R.id.imageView);
@@ -100,18 +100,6 @@ public class MainActivity extends AppCompatActivity {
                     100);
         }
         //------------------------------------------------------------------------
-
-        //------------------- VALID LOCALISATION ------------------------------------
-        validGeolocalisationButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                openMainActivity(); // Open the new page with the map
-
-
-
-            }
-        });
-        //----------------------------------------------------------------------------
 
         //--------------------------- OPEN MAP -----------------------------------
         openMapButton.setOnClickListener(new View.OnClickListener(){
