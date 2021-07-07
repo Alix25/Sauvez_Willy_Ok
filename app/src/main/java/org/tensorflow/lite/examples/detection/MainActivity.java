@@ -38,20 +38,25 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     public static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
-            //Get capture image
+
+            //Get the captured image
             sourceBitmap= (Bitmap) data.getExtras().get("data");
-            //Set capture  image
+            //Set capture  image on screen
             imageView.setImageBitmap(sourceBitmap);
+
+            //Crop the image to the format 416x416
             this.cropBitmap = Utils.processBitmap(sourceBitmap, TF_OD_API_INPUT_SIZE);
             this.imageView.setImageBitmap(cropBitmap);
 
         }
-        initBox();//init
+        initBox();
     }
 
 
@@ -60,27 +65,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cameraButton = findViewById(R.id.cameraButton);
-        detectButton = findViewById(R.id.detectButton);
-        takePictureButton = findViewById(R.id.takePictureButton);
+
+        //------------------  BUTTONS ------------------------------
+        cameraButton = findViewById(R.id.cameraButton); //Open the live camera
+        detectButton = findViewById(R.id.detectButton); //Detect plastic on the image
+        takePictureButton = findViewById(R.id.takePictureButton); //Take a picture
+        openMapButton = findViewById(R.id.openMap);
+        validGeolocalisationButton = findViewById(R.id.validGeolocalisation);
+        //----------------------------------------------------------
+
         imageView = findViewById(R.id.imageView);
-        //request for cam
+
+        //---------------- REQUEST PERMISSION FOR THE CAMERA --------------------
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(MainActivity.this, new String[]{
                             Manifest.permission.CAMERA
                     },
                     100);
-
         }
+        //------------------------------------------------------------------------
 
-
-        openMap = (Button)findViewById(R.id.openMap);
-        openMap.setOnClickListener(new View.OnClickListener(){
+        //------------------- VALID LOCALISATION ------------------------------------
+        validGeolocalisationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                openMainActivity();
+                openMainActivity(); // Open the new page with the map
+
+
+
             }
         });
+        //----------------------------------------------------------------------------
+
+        //--------------------------- OPEN MAP -----------------------------------
+        openMapButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                openMainActivity(); // Open the new page with the map
+            }
+        });
+        //------------------------------------------------------------------------
+
+
+        //--------------------------- TAKE PICTURE---------------------------------
         takePictureButton.setOnClickListener(new View.OnClickListener() {
 
             //open
@@ -88,18 +115,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 100);
-
             }
 
         });
+        //-------------------------------------------------------------------------
 
-
+        //------------------------------- CAMERA -----------------------------------
+        //Call the detector activiy class
         cameraButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DetectorActivity.class)));
 
-
+        //------------------------------- DETECT------------------------------------
         detectButton.setOnClickListener(v -> {
             Handler handler = new Handler();
-
             new Thread(() -> {
                 final List<Classifier.Recognition> results = detector.recognizeImage(cropBitmap);
                 handler.post(new Runnable() {
@@ -108,13 +135,11 @@ public class MainActivity extends AppCompatActivity {
                         handleResult(cropBitmap, results);
                         imageView.setImageBitmap(cropBitmap);
 
-
                     }
                 });
             }).start();
 
         });
-
 
 
     }
@@ -130,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     public void openMainActivity(){
+        //Open the map page
         Intent intent = new Intent(this, MainActivity2.class);
         startActivity(intent);
     }
@@ -143,8 +168,10 @@ public class MainActivity extends AppCompatActivity {
 
     private static final boolean TF_OD_API_IS_QUANTIZED = false;
 
+    //MODEL
     private static final String TF_OD_API_MODEL_FILE = "yolov4-tiny-416.tflite";
 
+    //LABELS
     private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/coco.txt";
 
     // Minimum detection confidence to track a detection.
@@ -164,7 +191,8 @@ public class MainActivity extends AppCompatActivity {
     private Bitmap sourceBitmap;
     private Bitmap cropBitmap;
 
-    private Button cameraButton, detectButton, takePictureButton, openMap;
+
+    private Button cameraButton, detectButton, takePictureButton, openMapButton, validGeolocalisationButton;
     private ImageView imageView;
 
     public void initBox() {
