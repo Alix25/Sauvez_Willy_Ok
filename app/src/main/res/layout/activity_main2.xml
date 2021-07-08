@@ -29,10 +29,11 @@
             android:id="@+id/reportButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#283953"
             android:clickable="true"
             android:onClick="onClick"
             android:visibility="visible"
-            app:srcCompat="@android:drawable/ic_menu_camera" />
+            app:srcCompat="@android:drawable/ic_menu_sort_by_size" />
 
         <Button
             android:id="@+id/addOnMap"
